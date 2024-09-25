@@ -1,3 +1,4 @@
+//code
 import React, { useState, useEffect } from "react";
 import "./Calculator.css";
 import LogTable from "./LogTable.js";
