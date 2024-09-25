@@ -1,0 +1,234 @@
+// Old Calculator UI Code below
+// import React, { useState, useEffect } from "react";
+// import axios from "axios";
+// import "./Calculator.css";
+// import LogTable from "./LogTable.js";
+
+// const Calculator = () => {
+//   const [expression, setExpression] = useState("");
+//   const [logs, setLogs] = useState([]);
+
+//   const handleClick = (value) => {
+//     if (!isNaN(value) || value === ".") {
+//       setExpression((prev) => prev + value);
+//     } else if (value === "AC") {
+//       setExpression("");
+//     } else if (value === "DEL") {
+//       setExpression((prev) => prev.slice(0, -1));
+//     } else if (value === "=") {
+//       evaluate();
+//     } else {
+//       if (expression && !isNaN(expression.slice(-1))) {
+//         setExpression((prev) => prev + value);
+//       }
+//     }
+//   };
+
+//   const evaluate = async () => {
+//     try {
+//       const res = eval(expression);
+//       setExpression(res.toString());
+//       await axios.post("http://localhost:8080/api/logs", {
+//         expression: expression,
+//         isValid: true,
+//         output: res,
+//       });
+//       fetchLogs();
+//     } catch (error) {
+//       setExpression("Error");
+//       await axios.post("http://localhost:8080/api/logs", {
+//         expression: expression,
+//         isValid: false,
+//         output: null,
+//       });
+//       fetchLogs();
+//     }
+//   };
+
+//   const fetchLogs = async () => {
+//     try {
+//       const res = await axios.get("http://localhost:8080/api/logs");
+//       setLogs(res.data);
+//     } catch (error) {
+//       console.error("Error fetching logs:", error);
+//     }
+//   };
+
+//   useEffect(() => {
+//     fetchLogs();
+//   }, []);
+
+//   return React.createElement(
+//     "div",
+//     { className: "holder" },
+//     React.createElement(
+//       "div",
+//       { className: "calculator" },
+//       React.createElement(
+//         "div",
+//         { className: "display" },
+//         React.createElement("input", {
+//           type: "text",
+//           className: "display-input",
+//           value: expression,
+//           readOnly: true,
+//         })
+//       ),
+//       React.createElement(
+//         "div",
+//         { className: "buttons" },
+//         [
+//           "AC",
+//           "%",
+//           "DEL",
+//           "/",
+//           "7",
+//           "8",
+//           "9",
+//           "*",
+//           "4",
+//           "5",
+//           "6",
+//           "-",
+//           "1",
+//           "2",
+//           "3",
+//           "+",
+//           "00",
+//           "0",
+//           ".",
+//           "=",
+//         ].map((label) =>
+//           React.createElement(
+//             "button",
+//             {
+//               key: label,
+//               className:
+//                 label === "="
+//                   ? "button operator equal"
+//                   : "button" +
+//                     (["AC", "DEL", "%", "/"].includes(label)
+//                       ? " operator"
+//                       : ""),
+//               onClick: () => handleClick(label),
+//             },
+//             label
+//           )
+//         )
+//       )
+//     ),
+//     React.createElement(LogTable, { logs: logs })
+//   );
+// };
+
+// export default Calculator;
+
+//Working code below
+// import React, { useState, useEffect } from "react";
+// import "./Calculator.css";
+// import LogTable from "./LogTable.js";
+
+// const Calculator = () => {
+//   const [expression, setExpression] = useState("");
+//   const [logs, setLogs] = useState([]);
+
+//   const handleClick = (value) => {
+//     if (!isNaN(value) || value === ".") {
+//       setExpression((prev) => prev + value);
+//     } else if (value === "AC") {
+//       setExpression("");
+//     } else if (value === "DEL") {
+//       setExpression((prev) => prev.slice(0, -1));
+//     } else if (value === "=") {
+//       evaluate();
+//     } else {
+//       if (expression && !isNaN(expression.slice(-1))) {
+//         setExpression((prev) => prev + value);
+//       }
+//     }
+//   };
+
+//   const evaluate = () => {
+//     try {
+//       const res = eval(expression);
+//       setExpression(res.toString());
+//       // Here you can add logic to log the valid expression if needed
+//     } catch (error) {
+//       setExpression("Error");
+//       // Here you can add logic to log the error if needed
+//     }
+//   };
+
+//   // This function is left in case you want to add logs handling later
+//   const fetchLogs = () => {
+//     // Placeholder for log fetching logic
+//   };
+
+//   useEffect(() => {
+//     fetchLogs(); // You can remove this if not needed
+//   }, []);
+
+//   return React.createElement(
+//     "div",
+//     { className: "holder" },
+//     React.createElement(
+//       "div",
+//       { className: "calculator" },
+//       React.createElement(
+//         "div",
+//         { className: "display" },
+//         React.createElement("input", {
+//           type: "text",
+//           className: "display-input",
+//           value: expression,
+//           readOnly: true,
+//         })
+//       ),
+//       React.createElement(
+//         "div",
+//         { className: "buttons" },
+//         [
+//           "AC",
+//           "%",
+//           "DEL",
+//           "/",
+//           "7",
+//           "8",
+//           "9",
+//           "*",
+//           "4",
+//           "5",
+//           "6",
+//           "-",
+//           "1",
+//           "2",
+//           "3",
+//           "+",
+//           "00",
+//           "0",
+//           ".",
+//           "=",
+//         ].map((label) =>
+//           React.createElement(
+//             "button",
+//             {
+//               key: label,
+//               className:
+//                 label === "="
+//                   ? "button operator equal"
+//                   : "button" +
+//                     (["AC", "DEL", "%", "/"].includes(label)
+//                       ? " operator"
+//                       : ""),
+//               onClick: () => handleClick(label),
+//             },
+//             label
+//           )
+//         )
+//       )
+//     ),
+//     React.createElement(LogTable, { logs: logs })
+//   );
+// };
+
+// export default Calculator;

@@ -1,0 +1,113 @@
+//Normal test-cases
+// import React from "react";
+// import { render, screen, fireEvent } from "@testing-library/react";
+// import "@testing-library/jest-dom";
+// import Calculator from "./Calculator";
+
+// describe("Calculator Component", () => {
+//   test("renders calculator with initial state", () => {
+//     render(<Calculator />);
+
+//     // Check if the display input is present
+//     const displayInput = screen.getByRole("textbox");
+//     expect(displayInput).toBeInTheDocument();
+//     expect(displayInput).toHaveValue("");
+
+//     // Check if calculator buttons are rendered
+//     const buttons = [
+//       "AC",
+//       "%",
+//       "DEL",
+//       "/",
+//       "7",
+//       "8",
+//       "9",
+//       "*",
+//       "4",
+//       "5",
+//       "6",
+//       "-",
+//       "1",
+//       "2",
+//       "3",
+//       "+",
+//       "00",
+//       "0",
+//       ".",
+//       "=",
+//     ];
+//     buttons.forEach((button) => {
+//       expect(screen.getByText(button)).toBeInTheDocument();
+//     });
+//   });
+
+//   test("handles button clicks correctly", () => {
+//     render(<Calculator />);
+
+//     const button5 = screen.getByText("5");
+//     const buttonPlus = screen.getByText("+");
+//     const button2 = screen.getByText("2");
+//     const buttonEqual = screen.getByText("=");
+
+//     // Simulate button clicks
+//     fireEvent.click(button5);
+//     fireEvent.click(buttonPlus);
+//     fireEvent.click(button2);
+//     fireEvent.click(buttonEqual);
+
+//     // Check if the result is displayed
+//     const displayInput = screen.getByRole("textbox");
+//     expect(displayInput).toHaveValue("7");
+//   });
+
+//   test("clears input when AC is pressed", () => {
+//     render(<Calculator />);
+
+//     const button5 = screen.getByText("5");
+//     const buttonAC = screen.getByText("AC");
+
+//     // Simulate button clicks
+//     fireEvent.click(button5);
+//     fireEvent.click(buttonAC);
+
+//     // Check if the display is cleared
+//     const displayInput = screen.getByRole("textbox");
+//     expect(displayInput).toHaveValue("");
+//   });
+
+//   test("deletes last character when DEL is pressed", () => {
+//     render(<Calculator />);
+
+//     const button5 = screen.getByText("5");
+//     const buttonPlus = screen.getByText("+");
+//     const button2 = screen.getByText("2");
+//     const buttonDEL = screen.getByText("DEL");
+
+//     // Simulate button clicks
+//     fireEvent.click(button5);
+//     fireEvent.click(buttonPlus);
+//     fireEvent.click(button2);
+//     fireEvent.click(buttonDEL);
+
+//     // Check if the display shows "5+"
+//     const displayInput = screen.getByRole("textbox");
+//     expect(displayInput).toHaveValue("5+");
+//   });
+
+//   test("shows error for invalid expression", () => {
+//     render(<Calculator />);
+
+//     const button5 = screen.getByText("5");
+//     const buttonPlus = screen.getByText("+");
+//     const buttonEqual = screen.getByText("=");
+
+//     // Simulate button clicks
+//     fireEvent.click(button5);
+//     fireEvent.click(buttonPlus);
+//     fireEvent.click(buttonEqual); // Missing number after operator
+
+//     // Check if error is displayed
+//     const displayInput = screen.getByRole("textbox");
+//     expect(displayInput).toHaveValue("Error"); // Adjust based on your error handling logic
+//   });
+// });
